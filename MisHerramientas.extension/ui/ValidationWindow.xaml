@@ -1,0 +1,206 @@
+<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="TopoGuard"
+    Height="500"
+    Width="720"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="15">
+
+        <!-- Filas -->
+        <Grid.RowDefinitions>
+
+        <!--Encabezado-->
+            <RowDefinition Height="Auto"/>
+        <!--Resumen-->
+            <RowDefinition Height="Auto"/>
+        <!--Tabla-->
+            <RowDefinition Height="2*"/>
+        <!--Detalles-->
+            <RowDefinition Height="*"/>
+        <!--Botones-->
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+
+        <!-- ================================================= -->
+        <!-- ENCABEZADO -->
+        <!-- ================================================= -->
+
+        <StackPanel Grid.Row="0">
+
+            <TextBlock
+                Text="🛡 TOPOGUARD"
+                FontSize="24"
+                FontWeight="Bold"/>
+
+            <TextBlock
+                Text="Protección de topografías"
+                FontSize="14"
+                Margin="0,5,0,15"/>
+
+        </StackPanel>
+
+        <!-- ================================================= -->
+        <!-- RESUMEN -->
+        <!-- ================================================= -->
+
+        <Grid Grid.Row="1"
+              Margin="0,0,0,15">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Nuevas -->
+
+            <StackPanel Grid.Column="0">
+
+                <TextBlock
+                    Text="Nuevas"
+                    FontWeight="Bold"/>
+
+                <TextBlock
+                    Name="txtNew"
+                    FontSize="20"
+                    Text="0"/>
+
+            </StackPanel>
+
+            <!-- Eliminadas -->
+
+            <StackPanel Grid.Column="1">
+
+                <TextBlock
+                    Text="Eliminadas"
+                    FontWeight="Bold"/>
+
+                <TextBlock
+                    Name="txtDeleted"
+                    FontSize="20"
+                    Text="0"/>
+
+            </StackPanel>
+
+            <!-- Movidas -->
+
+            <StackPanel Grid.Column="2">
+
+                <TextBlock
+                    Text="Movidas"
+                    FontWeight="Bold"/>
+
+                <TextBlock
+                    Name="txtMoved"
+                    FontSize="20"
+                    Text="0"/>
+
+            </StackPanel>
+
+        </Grid>
+
+        <!-- ================================================= -->
+        <!-- REPORTE -->
+        <!-- ================================================= -->
+
+        <!-- ================================================= -->
+        <!-- TABLA DE RESULTADOS -->
+        <!-- ================================================= -->
+
+        <DataGrid
+            Grid.Row="2"
+            Name="dgTopographies"
+
+            AutoGenerateColumns="False"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserResizeRows="False"
+            CanUserSortColumns="True"
+            IsReadOnly="True"
+
+            HeadersVisibility="Column"
+
+            SelectionMode="Single"
+
+         
+            SelectionChanged="dgTopographies_SelectionChanged"
+
+            Margin="0">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn
+                    Header="Estado"
+                    Width="80"
+                    Binding="{Binding Status}" />
+
+                <DataGridTextColumn
+                    Header="Topografía"
+                    Width="*"
+                    Binding="{Binding Name}" />
+
+                <DataGridTextColumn
+                    Header="Cambio"
+                    Width="120"
+                    Binding="{Binding Change}" />
+
+                <DataGridTextColumn
+                    Header="Distancia (m)"
+                    Width="110"
+                    Binding="{Binding Distance}" />
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <GroupBox
+            Grid.Row="3"
+            Header="Detalles"
+            Margin="0,10,0,0">
+
+            <TextBox
+                Name="txtDetails"
+                IsReadOnly="True"
+                AcceptsReturn="True"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto"
+                FontFamily="Consolas"
+                FontSize="13"
+                TextWrapping="NoWrap"/>
+
+        </GroupBox>
+
+        <!-- ================================================= -->
+        <!-- BOTONES -->
+        <!-- ================================================= -->
+
+        <StackPanel
+            Grid.Row="4"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            Margin="0,15,0,0">
+
+            <Button
+                Name="btnRestore"
+                Width="120"
+                Height="32"
+                Margin="0,0,10,0"
+                Content="Restaurar"
+                Click="btnRestore_Click"/>
+
+            <Button
+                Name="btnClose"
+                Width="120"
+                Height="32"
+                Content="Cerrar"
+                Click="btnClose_Click"/>
+
+        </StackPanel>
+
+    </Grid>
+
+</Window>
